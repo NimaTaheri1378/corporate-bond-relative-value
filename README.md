@@ -2,7 +2,7 @@
 
 Research-grade corporate-bond relative-value pipeline for testing whether transaction-cleaned issuer-curve residuals forecast future corporate-bond returns.
 
-[![Public repo audit](https://github.com/NimaTaheri1378/corporate-bond-relative-value/actions/workflows/public_repo_audit.yml/badge.svg)](https://github.com/NimaTaheri1378/corporate-bond-relative-value/actions/workflows/public_repo_audit.yml)
+[![CI](https://github.com/NimaTaheri1378/corporate-bond-relative-value/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/NimaTaheri1378/corporate-bond-relative-value/actions/workflows/ci.yml)
 ![Python 3.12](https://img.shields.io/badge/Python-3.12-blue)
 ![Research candidate](https://img.shields.io/badge/status-research%20candidate-purple)
 ![Public-safe release](https://img.shields.io/badge/data-public--safe%20aggregate%20release-green)
