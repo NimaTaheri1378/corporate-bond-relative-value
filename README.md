@@ -51,10 +51,10 @@ The public repo contains code, documentation, aggregate result tables, figures, 
 | ![Cumulative net return](docs/assets/figures/step08e_test_cumulative_net_return.png) | ![Net Sharpe leaderboard](docs/assets/figures/step08e_test_net_sharpe_leaderboard.png) |
 | **Net cumulative performance.** The headline residual-rank strategy remains positive after 10 bps turnover costs. | **Model comparison.** Transparent residual ranking beats Ridge, CPU LightGBM, and GPU MLP on risk-adjusted net performance. |
 
-| Risk profile | Interactive views |
+| Risk profile | Robustness scorecard |
 |---|---|
-| ![Return vs drawdown](docs/assets/figures/step08e_test_return_vs_drawdown.png) | [`interactive cumulative return`](docs/assets/interactive/step08e_test_cumulative_net_return.html) |
-| **Return vs drawdown.** Nonlinear models produce similar returns with materially worse drawdowns. | **Interactive figures.** Public-safe HTML dashboards are built from aggregate outputs only. |
+| ![Return vs drawdown](docs/assets/figures/step08e_test_return_vs_drawdown.png) | ![Robustness scorecard](docs/assets/figures/step08f_robustness_scorecard.png) |
+| **Return vs drawdown.** Nonlinear models produce similar returns with materially worse drawdowns. | **Robustness.** The headline signal survives maturity-, liquidity-, rating-, and amount-neutral variants. |
 
 ## Robustness scorecard
 

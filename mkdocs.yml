@@ -1,13 +1,22 @@
 site_name: Corporate Bond Relative-Value
+repo_url: https://github.com/NimaTaheri1378/corporate-bond-relative-value
+repo_name: NimaTaheri1378/corporate-bond-relative-value
+
 theme:
   name: material
+
 nav:
   - Home: index.md
   - Methodology: methodology.md
   - Results: results.md
   - Robustness: robustness.md
+  - Data and extraction:
+      - Extraction: extraction.md
+      - Data contracts: data_contracts.md
+      - API: api.md
   - Reproducibility: reproducibility.md
   - Model Card: model_card.md
+
 markdown_extensions:
   - tables
   - fenced_code
