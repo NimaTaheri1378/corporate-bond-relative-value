@@ -1,0 +1,22 @@
+portfolio:
+  rebalance_frequency: weekly
+  horizons_trading_days: [5, 20, 60]
+  ranking: cross_sectional
+  buckets: 10
+
+neutralization:
+  issuer_family: optional
+  rating_bucket: true
+  duration_bucket: true
+  sector: true
+
+costs:
+  report_gross: true
+  report_net: true
+  baseline_half_spread: true
+  liquidity_conditioned_impact_model: true
+
+risk:
+  max_single_issuer_weight: 0.02
+  max_rating_bucket_active_weight: 0.10
+  turnover_cap_per_rebalance: 0.35

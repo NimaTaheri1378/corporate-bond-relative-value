@@ -1,0 +1,469 @@
+version: 1
+created_by: patch_corpbond_rv_step02.py
+created_utc: '2026-05-28T19:23:52.111357+00:00'
+notes:
+- Exact table names selected after Step 01 account-level WRDS schema discovery.
+- Runtime scripts default to JSON contracts to avoid relying on PyYAML being installed.
+- Raw WRDS outputs remain under data/raw and are ignored by git.
+settings:
+  default_partition: year
+  wrds_parallel_workers: 4
+  local_cpu_workers_env: RV_N_JOBS
+  parquet_compression: zstd
+  profile_sample_rows: 5
+tables:
+  trace_enhanced_clean:
+    role: primary_clean_trace_trades
+    priority: 1
+    library: wrdsapps_bondret
+    table: trace_enhanced_clean
+    date_column: trd_exctn_dt
+    partition: month
+    description: WRDS-cleaned TRACE Enhanced transaction table; primary trade source for daily prices/liquidity.
+    columns:
+    - cusip_id
+    - bond_sym_id
+    - company_symbol
+    - trd_exctn_dt
+    - trd_exctn_tm
+    - trd_rpt_dt
+    - trd_rpt_tm
+    - msg_seq_nb
+    - trc_st
+    - scrty_type_cd
+    - wis_fl
+    - cmsn_trd
+    - entrd_vol_qt
+    - rptd_pr
+    - yld_sign_cd
+    - yld_pt
+    - asof_cd
+    - days_to_sttl_ct
+    - sale_cndtn_cd
+    - sale_cndtn2_cd
+    - rpt_side_cd
+    - buy_cmsn_rt
+    - buy_cpcty_cd
+    - sell_cmsn_rt
+    - sell_cpcty_cd
+    - cntra_mp_id
+    - spcl_trd_fl
+    - trdg_mkt_cd
+    - dissem_fl
+    - orig_msg_seq_nb
+    - bloomberg_identifier
+    - sub_prdct
+    - stlmnt_dt
+    - trd_mod_3
+    - trd_mod_4
+    - rptg_party_type
+    - ats_indicator
+    required_columns:
+    - cusip_id
+    - trd_exctn_dt
+    - rptd_pr
+    - entrd_vol_qt
+    - rpt_side_cd
+    quality_filters:
+    - trd_exctn_dt is not null
+    - rptd_pr is not null
+    - rptd_pr > 0
+    - entrd_vol_qt is not null
+    enabled_by_default: true
+  trace_standard_clean:
+    role: fallback_clean_trace_trades
+    priority: 2
+    library: wrdsapps_bondret
+    table: trace_standard_clean
+    date_column: trd_exctn_dt
+    partition: month
+    description: WRDS-cleaned TRACE Standard fallback/validation source.
+    columns:
+    - cusip_id
+    - bond_sym_id
+    - bsym
+    - trd_exctn_dt
+    - trd_exctn_tm
+    - msg_seq_nb
+    - trc_st
+    - wis_fl
+    - cmsn_trd
+    - rptd_pr
+    - yld_pt
+    - asof_cd
+    - rpt_side_cd
+    - side
+    - orig_dis_dt
+    - orig_msg_seq_nb
+    - rptg_party_type
+    - contra_party_type
+    - entrd_vol_qt
+    required_columns:
+    - cusip_id
+    - trd_exctn_dt
+    - rptd_pr
+    - entrd_vol_qt
+    quality_filters:
+    - trd_exctn_dt is not null
+    - rptd_pr is not null
+    - rptd_pr > 0
+    enabled_by_default: false
+  bondret_monthly:
+    role: primary_monthly_return_labels
+    priority: 1
+    library: wrdsapps_bondret
+    table: bondret
+    date_column: date
+    partition: year
+    description: WRDS Bond Returns monthly panel; primary return-label and bond pricing reference.
+    columns:
+    - date
+    - issue_id
+    - cusip
+    - bond_sym_id
+    - bsym
+    - isin
+    - company_symbol
+    - bond_type
+    - security_level
+    - conv
+    - offering_date
+    - offering_amt
+    - offering_price
+    - principal_amt
+    - maturity
+    - treasury_maturity
+    - coupon
+    - day_count_basis
+    - amount_outstanding
+    - r_sp
+    - r_mr
+    - r_fr
+    - n_sp
+    - n_mr
+    - n_fr
+    - rating_num
+    - rating_cat
+    - rating_class
+    - t_date
+    - t_volume
+    - t_dvolume
+    - t_spread
+    - t_yld_pt
+    - yield
+    - price_eom_flg
+    - price_eom
+    - price_ldm
+    - price_l5m
+    - gap
+    - ret_eom
+    - ret_ldm
+    - ret_l5m
+    - tmt
+    - duration
+    - defaulted
+    - default_date
+    - default_type
+    required_columns:
+    - date
+    - issue_id
+    - cusip
+    - price_eom
+    - ret_eom
+    - tmt
+    - duration
+    quality_filters:
+    - date is not null
+    - cusip is not null
+    enabled_by_default: true
+  bondret_standard_monthly:
+    role: fallback_monthly_return_labels
+    priority: 2
+    library: wrdsapps_bondret
+    table: bondret_std
+    date_column: date
+    partition: year
+    description: WRDS Bond Returns Standard fallback panel.
+    columns:
+    - date
+    - issue_id
+    - cusip
+    - bond_sym_id
+    - bsym
+    - isin
+    - company_symbol
+    - bond_type
+    - security_level
+    - conv
+    - offering_date
+    - offering_amt
+    - offering_price
+    - principal_amt
+    - maturity
+    - treasury_maturity
+    - coupon
+    - day_count_basis
+    - amount_outstanding
+    - rating_num
+    - rating_cat
+    - rating_class
+    - t_date
+    - t_volume
+    - t_dvolume
+    - t_spread
+    - t_yld_pt
+    - yield
+    - price_eom_flg
+    - price_eom
+    - price_ldm
+    - price_l5m
+    - ret_eom
+    - ret_ldm
+    - ret_l5m
+    - tmt
+    - duration
+    - defaulted
+    - default_date
+    - default_type
+    required_columns:
+    - date
+    - issue_id
+    - cusip
+    - price_eom
+    - ret_eom
+    quality_filters:
+    - date is not null
+    - cusip is not null
+    enabled_by_default: false
+  fisd_issue_issuer:
+    role: primary_security_master
+    priority: 1
+    library: fisd
+    table: issue_issuer
+    date_column: null
+    partition: none
+    description: Joined FISD issue/issuer master with issue terms and issuer metadata.
+    columns:
+    - issue_id
+    - issuer_id
+    - prospectus_issuer_name
+    - issuer_cusip
+    - issue_cusip
+    - issue_name
+    - maturity
+    - security_level
+    - security_pledge
+    - enhancement
+    - coupon_type
+    - convertible
+    - mtn
+    - asset_backed
+    - yankee
+    - canadian
+    - oid
+    - foreign_currency
+    - slob
+    - issue_offered_global
+    - settlement_type
+    - treasury_spread
+    - treasury_maturity
+    - offering_amt
+    - offering_date
+    - offering_price
+    - offering_yield
+    - delivery_date
+    - denomination
+    - principal_amt
+    - covenants
+    - defeased
+    - defeasance_type
+    - defeased_date
+    - defaulted
+    - tender_exch_offer
+    - redeemable
+    - refunding_date
+    - putable
+    - announced_call
+    - active_issue
+    - private_placement
+    - bond_type
+    - isin
+    - perpetual
+    - exchangeable
+    - preferred_security
+    - complete_cusip
+    - cusip_name
+    - industry_group
+    - industry_code
+    - in_bankruptcy
+    - parent_id
+    - naics_code
+    - country_domicile
+    - rule_144a
+    required_columns:
+    - issue_id
+    - issuer_id
+    - issue_cusip
+    - maturity
+    - offering_date
+    - coupon_type
+    quality_filters: []
+    enabled_by_default: true
+  fisd_coupon_info:
+    role: coupon_terms
+    priority: 1
+    library: fisd
+    table: fisd_coupon_info
+    date_column: null
+    partition: none
+    description: Coupon/date-count terms for carry and accrued-interest logic.
+    columns:
+    - issue_id
+    - dated_date
+    - first_interest_date
+    - interest_frequency
+    - coupon
+    - pay_in_kind
+    - pay_in_kind_exp_date
+    - coupon_change_indicator
+    - day_count_basis
+    - last_interest_date
+    - next_interest_date
+    required_columns:
+    - issue_id
+    - coupon
+    - interest_frequency
+    - day_count_basis
+    quality_filters: []
+    enabled_by_default: true
+  fisd_rating_hist:
+    role: rating_history
+    priority: 1
+    library: fisd
+    table: fisd_rating_hist
+    date_column: rating_date
+    partition: year
+    description: Historical issue ratings for time-aware rating buckets.
+    columns:
+    - issue_id
+    - rating_type
+    - rating_date
+    - rating
+    - rating_status
+    - reason
+    required_columns:
+    - issue_id
+    - rating_type
+    - rating_date
+    - rating
+    quality_filters: []
+    enabled_by_default: true
+  fisd_amount_outstanding:
+    role: amount_outstanding_history
+    priority: 1
+    library: fisd
+    table: fisd_amount_outstanding
+    date_column: effective_date
+    partition: year
+    description: Amount outstanding changes for size/liquidity controls.
+    columns:
+    - issue_id
+    - action_type
+    - effective_date
+    - action_price
+    - action_amount
+    - amount_outstanding
+    required_columns:
+    - issue_id
+    - effective_date
+    - amount_outstanding
+    quality_filters: []
+    enabled_by_default: true
+  crsp_bond_link:
+    role: bond_to_equity_link
+    priority: 1
+    library: wrdsapps_link_crsp_bond
+    table: bondcrsp_link
+    date_column: null
+    partition: none
+    description: CUSIP to CRSP PERMNO/PERMCO link with trace/crsp/link date ranges.
+    columns:
+    - cusip
+    - permno
+    - permco
+    - trace_startdt
+    - trace_enddt
+    - crsp_startdt
+    - crsp_enddt
+    - link_startdt
+    - link_enddt
+    required_columns:
+    - cusip
+    - permno
+    - permco
+    - link_startdt
+    - link_enddt
+    quality_filters: []
+    enabled_by_default: true
+  fang_bond_firm_link:
+    role: issuer_to_firm_link_backup
+    priority: 2
+    library: contrib_bond_firm_link
+    table: fang_link
+    date_column: ldom
+    partition: year
+    description: Issuer CUSIP to GVKEY/PERMNO/PERMCO monthly link backup.
+    columns:
+    - issuer_cusip
+    - gvkey
+    - permno
+    - permco
+    - ldom
+    required_columns:
+    - issuer_cusip
+    - gvkey
+    - permno
+    - permco
+    - ldom
+    quality_filters: []
+    enabled_by_default: true
+  contrib_bond_returns:
+    role: alternative_monthly_return_labels
+    priority: 3
+    library: contrib_corporate_bond_returns
+    table: bonds
+    date_column: date
+    partition: year
+    description: Alternative contributed corporate bond returns; used for validation and robustness.
+    columns:
+    - cusip
+    - permno
+    - date
+    - name
+    - mv
+    - price_eom
+    - ret_eom
+    - ret_exc
+    - ret_texc
+    - duration
+    - yield
+    - tmt
+    - rating_group
+    - rating_num
+    - ret_eq
+    - value
+    - bond_age_pct
+    - yield_spread
+    - amount_outstanding
+    required_columns:
+    - cusip
+    - date
+    - ret_eom
+    - duration
+    - yield
+    - tmt
+    quality_filters:
+    - date is not null
+    - cusip is not null
+    enabled_by_default: true
+

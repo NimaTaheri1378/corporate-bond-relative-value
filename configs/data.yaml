@@ -1,0 +1,60 @@
+project:
+  name: Corporate Bond Relative-Value
+  package: corpbond_rv
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  manifests: data/manifests
+  artifacts: artifacts
+  logs: run_logs
+
+runtime:
+  default_n_jobs_env: RV_N_JOBS
+  parquet_compression: zstd
+
+wrds:
+  target_library_patterns:
+    - trace_enhanced
+    - trace_standard
+    - trace
+    - fisd_fisd
+    - fisd_common
+    - fisd
+    - wrdsapps_bondret
+    - bondret
+    - contrib_corporate_bond_returns
+    - corporate_bond_returns
+    - wrdsapps_link_crsp_bond
+    - link_crsp_bond
+    - contrib_bond_firm_link
+    - bond_firm_link
+    - crsp
+    - comp
+    - compustat
+
+  table_name_keywords:
+    - trace
+    - trade
+    - trans
+    - bond
+    - issue
+    - issuer
+    - fisd
+    - return
+    - ret
+    - link
+    - cusip
+    - permno
+    - rating
+    - security
+    - master
+    - amount
+    - coupon
+    - maturity
+
+  discovery:
+    describe_level: likely
+    max_describe_per_library: 300
+    table_sample_rows: 0

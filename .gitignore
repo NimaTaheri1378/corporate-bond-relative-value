@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments and secrets
+.venv/
+venv/
+.env
+*.env
+*.key
+*.pem
+.pgpass
+*.pgpass
+*password*
+*secret*
+*token*
+
+# Proprietary / local research data
+data/raw/
+data/interim/
+data/processed/
+*.parquet
+*.feather
+*.arrow
+*.duckdb
+*.sqlite
+*.db
+
+# Runtime logs and private cluster output
+run_logs/
+logs/
+*.out
+*.err
+
+# Model binaries / local heavy artifacts
+artifacts/model_cards/*.pt
+artifacts/model_cards/*.pth
+artifacts/model_cards/*.onnx
+artifacts/model_cards/*.pkl
+artifacts/model_cards/*.pickle
+artifacts/model_cards/*.joblib
+artifacts/model_cards/*model.txt
+
+# Archives
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.gz
+
+# Public-safe docs assets are allowed
+!docs/
+!docs/assets/
+!docs/assets/figures/
+!docs/assets/interactive/
+!docs/assets/tables/
+!docs/**/*.md
+
+# Keep empty dirs if needed
+!.gitkeep

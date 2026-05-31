@@ -1,0 +1,36 @@
+script,stage,description,exists,size_bytes,public_safe_reason
+scripts/step09a_public_safety_audit.py,release,"Public safety audit: checks secrets, forbidden public files, and tracked forbidden files.",True,10457,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step09b_generate_public_docs.py,release,"Generates README, docs, and public aggregate assets.",True,19667,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step09c_prepare_public_push.py,release,Stages only public-safe reproducibility files by allowlist.,True,17405,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step04a_trace_metadata_audit.py,trace-clean,Raw TRACE footer/metadata audit.,True,13784,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step04d_trace_code_policy_audit.py,trace-clean,TRACE code-policy audit.,True,11094,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step04e_trace_policy_retention_audit.py,trace-clean,Cleaning policy retention audit.,True,10580,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step04f_trace_cleaner.py,trace-clean,Builds clean TRACE universes.,True,15914,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step04g_validate_clean_outputs.py,trace-clean,Validates clean TRACE outputs.,True,7601,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step04h_build_clean_trace_manifests.py,trace-clean,Builds final clean TRACE manifests.,True,6512,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05a_security_master_local_qa.py,security-master,Local non-TRACE/FISD/security-master QA.,True,17425,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05b_identifier_coverage_audit.py,security-master,TRACE/FISD/return/link identifier coverage audit.,True,14226,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05c_build_fisd_security_master.py,security-master,Builds local FISD issue/rating/amount dimensions.,True,11414,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05d_trace_fisd_join_audit.py,security-master,Row-level TRACE-to-FISD join audit.,True,13390,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05e_trace_fisd_join_panel_smoke.py,security-master,Smoke joined TRACE-FISD panel.,True,16662,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05f_build_trace_fisd_panel.py,security-master,Builds stable TRACE-FISD processed panel.,True,12537,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05g_validate_trace_fisd_panel.py,security-master,Validates stable TRACE-FISD panel.,True,10458,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step05h_curve_ready_universe_audit.py,security-master,Curve-ready issuer-date support audit.,True,12746,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06a_curve_fit_smoke.py,curves,Nelson-Siegel curve-fit smoke.,True,16766,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06b_curve_model_comparison_smoke.py,curves,Guarded curve-family model comparison smoke.,True,18783,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06c_build_curve_inputs.py,curves,Builds issue-date curve input aggregates.,True,15447,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06d_validate_curve_inputs.py,curves,Validates curve-input outputs.,True,9879,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06e_curve_fit_residuals.py,curves,Fits guarded curves and residuals.,True,27080,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06f_validate_curve_fit_outputs.py,curves,Validates curve-fit outputs.,True,16036,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06g_residual_feature_smoke.py,features,Builds residual feature layer.,True,16093,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step06h_validate_residual_features.py,features,Validates residual feature outputs.,True,12212,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step07a_label_source_audit.py,labels,Audits return-label sources.,True,20285,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step07b_monthly_label_matrix_smoke.py,labels,Builds monthly label matrix.,True,20670,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step07c_validate_monthly_label_matrix.py,labels,Validates/promotes monthly label matrix.,True,14411,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08a_monthly_baseline_ridge.py,models,Transparent ridge/signal baseline.,True,15706,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08b_monthly_signal_backtest.py,backtest,Cost-aware residual-signal decile backtest.,True,13682,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08c_gpu_mlp_monthly.py,models,GPU PyTorch MLP model.,True,20346,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08d_lightgbm_monthly.py,models,CPU LightGBM tabular model.,True,18026,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08e_model_leaderboard_and_figures.py,results,Builds model leaderboard and figures.,True,17760,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08f_signal_robustness_exposure.py,robustness,Maturity/liquidity robustness and exposure audit.,True,18511,Source code only; no raw WRDS data or local Parquet outputs.
+scripts/step08g_rating_amount_exposure_audit.py,robustness,As-of rating and amount-outstanding exposure audit.,True,28785,Source code only; no raw WRDS data or local Parquet outputs.

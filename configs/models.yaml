@@ -1,0 +1,25 @@
+validation:
+  splitter: purged_walk_forward
+  expanding_train: true
+  embargo_equals_horizon: true
+
+baselines:
+  - panel_ols
+  - fama_macbeth
+  - elastic_net
+
+main_models:
+  lightgbm:
+    objective: regression
+    metric: rmse
+    n_jobs_env: RV_N_JOBS
+    tuning:
+      engine: optuna
+      storage: sqlite:///artifacts/model_cards/optuna_studies.sqlite3
+      n_trials_default: 100
+      pruning: true
+
+stretch_models:
+  temporal_fusion_transformer:
+    enabled: false
+    device: cuda

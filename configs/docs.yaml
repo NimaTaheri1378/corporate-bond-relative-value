@@ -1,0 +1,7 @@
+site:
+  title: Corporate Bond Relative-Value
+  theme: material
+figures:
+  static_dir: artifacts/figures_static
+  interactive_dir: artifacts/figures_interactive
+  table_dir: artifacts/tables

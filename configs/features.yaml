@@ -1,0 +1,38 @@
+horizons_trading_days: [5, 20, 60]
+
+feature_families:
+  curve_dislocation:
+    - residual_yield
+    - residual_price
+    - issuer_residual_z
+    - maturity_neighbor_residual
+    - duration_scaled_residual
+  carry_roll:
+    - carry_to_horizon
+    - rolldown_to_horizon
+    - carry_plus_rolldown
+  liquidity_microstructure:
+    - trade_count_20d
+    - median_trade_size_20d
+    - stale_days
+    - amihud_proxy_20d
+    - bid_ask_proxy
+  issue_characteristics:
+    - age_since_issue
+    - amount_outstanding
+    - coupon
+    - seniority
+    - callable_flag
+    - rule_144a_flag
+  state_interactions:
+    - rating_bucket
+    - maturity_bucket
+    - curve_fit_quality
+    - residual_x_liquidity
+
+timing:
+  signal_lag_days: 1
+  minimum_embargo_days_by_horizon:
+    5: 5
+    20: 20
+    60: 60

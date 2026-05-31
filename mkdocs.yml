@@ -1,0 +1,15 @@
+site_name: Corporate Bond Relative-Value
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Methodology: methodology.md
+  - Results: results.md
+  - Robustness: robustness.md
+  - Reproducibility: reproducibility.md
+  - Model Card: model_card.md
+markdown_extensions:
+  - tables
+  - fenced_code
+  - admonition
+  - pymdownx.superfences

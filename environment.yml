@@ -1,0 +1,25 @@
+name: ml_core
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.12
+  - numpy
+  - pandas
+  - scipy
+  - pyarrow
+  - pyyaml
+  - polars
+  - sqlalchemy
+  - statsmodels
+  - scikit-learn
+  - pytest
+  - plotly
+  - pip
+  - pip:
+      - wrds
+      - linearmodels
+      - optuna
+      - lightgbm
+      - mkdocs
+      - mkdocs-material
+      - kaleido
