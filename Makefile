@@ -80,3 +80,10 @@ step03b-trace-pilot:
 
 step03b-inspect:
 	python scripts/inspect_raw_lake.py --manifest-glob "data/manifests/extractions/step03*.csv" --output-dir data/manifests/extractions/raw_lake_report --make-figures
+
+.PHONY: smoke
+smoke:
+	python scripts/check_environment.py
+	python scripts/build_demo_visual.py
+	python -m compileall -q src scripts
+	python -m pytest -q
